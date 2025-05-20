@@ -1,0 +1,349 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #222;
+  color: #fff;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar nav ul li a {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+  color: #ff5a5f;
+}
+
+/* Theme toggle switch inside navbar */
+.theme-switch {
+  width: 50px;
+  height: 26px;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider background */
+.slider-icon {
+  position: relative;
+  background-color: #ffdd59; /* sun background */
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+/* Sun core */
+.slider-icon::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px #ffdd59;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+/* Sun rays */
+.slider-icon::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 13px;
+  width: 2px;
+  height: 6px;
+  background: #fff;
+  border-radius: 1px;
+  box-shadow:
+    0 -10px #fff,
+    7px -7px #fff,
+    10px 0 #fff,
+    7px 7px #fff,
+    0 10px #fff,
+    -7px 7px #fff,
+    -10px 0 #fff,
+    -7px -7px #fff;
+  transition: opacity 0.3s ease;
+  transform-origin: center;
+  z-index: 1;
+}
+
+/* Dark mode styles for slider */
+.theme-switch input:checked + .slider-icon {
+  background-color: #2c3e50; /* moon background */
+}
+
+.theme-switch input:checked + .slider-icon::before {
+  transform: translateX(24px);
+  background: #f1c40f;
+  box-shadow: -6px 0 0 0 #2c3e50; /* crescent moon effect */
+}
+
+.theme-switch input:checked + .slider-icon::after {
+  opacity: 0; /* hide sun rays */
+}
+
+/* Hero Section */
+.hero {
+  background: url('hero-bg.jpg') no-repeat center center/cover;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: #222;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+/* Portfolio */
+.portfolio {
+  padding: 3rem 2rem;
+  background-color: #fafafa;
+}
+
+.portfolio h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+/* Simple slider styles */
+.slider {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.slide-track {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.slide {
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 250px;
+  flex-shrink: 0;
+  transition: box-shadow 0.3s ease;
+}
+
+.slide:hover {
+  box-shadow: 0 12px 25px rgba(255, 90, 95, 0.5);
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* About Section */
+.about {
+  padding: 3rem 2rem;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-container h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.about-container p {
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Contact Section */
+.contact {
+  background-color: #fafafa;
+  padding: 3rem 2rem;
+}
+
+.contact h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.contact form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact input,
+.contact textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.contact button {
+  background-color: #ff5a5f;
+  color: #fff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.contact button:hover {
+  background-color: #e14e53;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #222;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark-mode .navbar {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .navbar nav ul li a {
+  color: #eee;
+}
+
+body.dark-mode .navbar nav ul li a:hover {
+  color: #ff5a5f;
+}
+
+body.dark-mode .hero-content h1,
+body.dark-mode .hero-content p,
+body.dark-mode .about-container p {
+  color: #eee;
+}
+
+body.dark-mode .portfolio {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .slide {
+  background-color: #222;
+  box-shadow: 0 8px 15px rgba(255, 90, 95, 0.3);
+}
+
+body.dark-mode .slide:hover {
+  box-shadow: 0 12px 25px rgba(255, 90, 95, 0.7);
+}
+
+body.dark-mode .about {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .contact {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .contact input,
+body.dark-mode .contact textarea {
+  background-color: #222;
+  color: #eee;
+  border: 1px solid #444;
+}
+
+body.dark-mode .contact button {
+  background-color: #ff5a5f;
+}
+
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  color: #aaa;
+}
