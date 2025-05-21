@@ -1,84 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Art Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sharon's Art Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- Navigation -->
+<header class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <img src="pictures/car2.png" alt="Sharon Prem Logo" class="logo-img">
+        </div>
 
-  <!-- Navigation -->
-  <header class="navbar">
-    <div class="logo">Sharon Prem</div>
+        <nav class="nav-links">
+    <ul>
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li class="portfolio-dropdown">
+            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <ul class="dropdown-menu">
+                <li><a href="#digital-art">Digital Art</a></li>
+                <li><a href="#paintings">Paintings</a></li>
+                <li><a href="#crafts">Crafts</a></li>
+                <li><a href="#character-designs">Character Designs</a></li>
+                <li><a href="#animations">Animations</a></li>
+                <li><a href="#awards">Awards</a></li>
+            </ul>
+        </li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="theme-toggle-wrapper">
+            <label class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <div class="slider">
+            <div class="slider-handle">
+                <span class="theme-icon">🌙</span>
+            </div>
+        </div>
+    </label>
+        </li>
+    </ul>
+</nav>
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
-
-    <nav class="nav-links">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        
-
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <!-- Hero Section -->
-<section id="home" class="hero fade-in">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="stars_hd.mp4" type="video/mp4">
-  </video>
-  <div class="hero-content">
-    <h1>Welcome to Sharon's Art Portfolio</h1>
-    <p>Explore my visual storytelling through brush, pixels, and passion.</p>
-  </div>
-</section>
-
-  <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio fade-in">
-    <h2>Featured Works</h2>
-    <div class="masonry-grid">
-      <img src="art1.png" alt="Art 1">
-      <img src="art2.png" alt="Art 2">
-      <img src="art3.png" alt="Art 3">
-      <img src="art4.png" alt="Art 4">
-      <img src="art5.png" alt="Art 5">
-      <img src="art6.png" alt="Art 6">
-      <!-- Add more as needed -->
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span class="hamburger"></span>
+        </button>
     </div>
-  </section>
+</header>
+    <!-- Hero Section -->
+    <section id="home" class="hero fade-in">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="pictures/stars_hd.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Welcome to Sharon's Art Portfolio</h1>
+            <p>Explore my visual storytelling through brush, pixels, and passion.</p>
+        </div>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="about fade-in">
-    <h2>About Me</h2>
-    <p>I’m a passionate artist exploring both digital and traditional mediums. My work reflects emotions, light, and form in dynamic harmony.</p>
-    <p>I specialize in mixed media, concept art, and environmental storytelling. Each piece aims to invite the viewer into a moment, a memory, or a feeling.</p>
-    <p>When I’m not painting, I’m likely sketching outside, studying design history, or collaborating with fellow creatives on visual projects.</p>
-  </section>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio fade-in">
+        <h2>My Portfolio</h2>
+        
+        <!-- Digital Art Section -->
+        <div class="portfolio-section">
+            <h3>Digital Art (Fanart)</h3>
+            <div class="masonry-grid">
+                <img src="art/capitano.jpg" alt="Capitano">
+                <img src="art/nilou.jpg" alt="Nilou">
+                <img src="art/kazuha.jpg" alt="Kazuha">
+                <img src="art/eren yaeger.jpg" alt="Kazuha">
+                <img src="art/clorind.jpg" alt="Clorind">
+                <img src="art/arleccino.jpg" alt="Arleccino">
+            </div>
+        </div>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact fade-in">
-    <h2>Contact Me</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <p class="contact-extra">Prefer email? Reach me directly at <a href="mailto:artist@example.com">artist@example.com</a>.</p>
-  </section>
+        <!-- Paintings Section -->
+        <div class="portfolio-section">
+            <h3>Paintings</h3>
+            <div class="paintings-grid">
+                <div class="column-one">
+                    <img src="paintings/bluesky.jpg" alt="Painting 1">
+                    <img src="paintings/mountain.jpg" alt="Painting 2">
+                </div>
+                <div class="column-two">
+                    <img src="paintings/blackwoman.jpg" alt="Painting 3" class="large-painting">
+                </div>
+                <div class="bottom-row">
+                    <img src="paintings/pattern.jpg" alt="Painting 4" class="large-painting">
+                </div>
+            </div>
+        </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 My Art Portfolio</p>
-  </footer>
+        <!-- Crafts Section -->
+        <div class="portfolio-section">
+            <h3>Crafts</h3>
+            <div class="masonry-grid">
+                <img src="craft1.png" alt="Handmade Craft 1">
+                <img src="craft2.png" alt="Handmade Craft 2">
+                <img src="craft3.png" alt="Handmade Craft 3">
+            </div>
+        </div>
 
-  <script src="theme-toggle.js"></script>
+        <!-- Character Designs Section -->
+        <div class="portfolio-section">
+            <h3>Original Character Designs</h3>
+            <div class="masonry-grid">
+                <img src="character1.png" alt="Original Character 1">
+                <img src="character2.png" alt="Original Character 2">
+                <img src="character3.png" alt="Original Character 3">
+            </div>
+        </div>
+
+        <!-- Animations Section -->
+        <div class="portfolio-section">
+            <h3>Animations</h3>
+            <div class="masonry-grid">
+                <video class="portfolio-video" controls>
+                    <source src="animation1.mp4" type="video/mp4">
+                </video>
+                <video class="portfolio-video" controls>
+                    <source src="animation2.mp4" type="video/mp4">
+                </video>
+                <video class="portfolio-video" controls>
+                    <source src="animation3.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <!-- Awards Section -->
+        <div class="portfolio-section awards">
+            <h3>Awards & Recognition</h3>
+            <div class="awards-grid">
+                <div class="award-item">
+                    <img src="award1.png" alt="Award 1">
+                    <h4>Best Digital Art 2024</h4>
+                    <p>International Digital Arts Festival</p>
+                </div>
+                <div class="award-item">
+                    <img src="award2.png" alt="Award 2">
+                    <h4>Character Design Excellence</h4>
+                    <p>Animation Conference 2024</p>
+                </div>
+                <div class="award-item">
+                    <img src="award3.png" alt="Award 3">
+                    <h4>Creative Crafts Silver</h4>
+                    <p>Artisan Guild Exhibition</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+        <h2>About Me</h2>
+        <p>I'm a passionate artist exploring both digital and traditional mediums. My work reflects emotions, light, and form in dynamic harmony.</p>
+        <p>I specialize in mixed media, concept art, and environmental storytelling. Each piece aims to invite the viewer into a moment, a memory, or a feeling.</p>
+        <p>When I'm not painting, I'm likely sketching outside, studying design history, or collaborating with fellow creatives on visual projects.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <h2>Contact Me</h2>
+        <form action="https://mail.google.com/mail/?view=cm&fs=1&to=sjpsketches@gmail.com" method="GET" target="_blank">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p class="contact-extra">
+            Prefer direct email? Reach me at 
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sjpsketches@gmail.com&su=Portfolio%20Inquiry" target="_blank">sjpsketches@gmail.com</a>
+        </p>
+    </section>
+    <script src="theme-toggle.js"></script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sharon Prem Art Portfolio. All rights reserved.</p>
+    </footer>
 </body>
 </html>
