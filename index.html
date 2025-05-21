@@ -11,7 +11,7 @@
 
   <!-- Navigation -->
   <header class="navbar">
-    <div class="logo">My Art</div>
+    <div class="logo">Sharon Prem</div>
 
     <input type="checkbox" id="menu-toggle" class="menu-toggle" />
     <label for="menu-toggle" class="menu-icon">&#9776;</label>
@@ -22,46 +22,40 @@
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li>
-          <button id="theme-toggle" aria-label="Toggle Theme">
-            <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-              <!-- Icon injected by JS -->
-            </svg>
-          </button>
-        </li>
+        
+
       </ul>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Welcome to My Art World</h1>
-      <p>Explore my visual storytelling through brush, pixels, and passion.</p>
-    </div>
-  </section>
+  <!-- Hero Section -->
+<section id="home" class="hero fade-in">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="stars_hd.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <h1>Welcome to Sharon's Art Portfolio</h1>
+    <p>Explore my visual storytelling through brush, pixels, and passion.</p>
+  </div>
+</section>
 
   <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio">
+  <section id="portfolio" class="portfolio fade-in">
     <h2>Featured Works</h2>
-    <div class="slider">
-      <div class="slide">
-        <img src="art1.png" alt="Art 1" />
-        <p>“Reflection” — a study in light and water texture.</p>
-      </div>
-      <div class="slide">
-        <img src="art2.png" alt="Art 2" />
-        <p>“Urban Spirit” — vibrant energy meets quiet corners.</p>
-      </div>
-      <div class="slide">
-        <img src="art3.png" alt="Art 3" />
-        <p>“Windswept” — blending motion with stillness.</p>
-      </div>
+    <div class="masonry-grid">
+      <img src="art1.png" alt="Art 1">
+      <img src="art2.png" alt="Art 2">
+      <img src="art3.png" alt="Art 3">
+      <img src="art4.png" alt="Art 4">
+      <img src="art5.png" alt="Art 5">
+      <img src="art6.png" alt="Art 6">
+      <!-- Add more as needed -->
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="about">
+  <section id="about" class="about fade-in">
     <h2>About Me</h2>
     <p>I’m a passionate artist exploring both digital and traditional mediums. My work reflects emotions, light, and form in dynamic harmony.</p>
     <p>I specialize in mixed media, concept art, and environmental storytelling. Each piece aims to invite the viewer into a moment, a memory, or a feeling.</p>
@@ -69,7 +63,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="contact">
+  <section id="contact" class="contact fade-in">
     <h2>Contact Me</h2>
     <form>
       <input type="text" placeholder="Your Name" required />
@@ -84,10 +78,6 @@
   <footer>
     <p>&copy; 2025 My Art Portfolio</p>
   </footer>
-    <section id="home" class="hero fade-in">...</section>
-    <section id="portfolio" class="portfolio fade-in">...</section>
-    <section id="about" class="about fade-in">...</section>
-    <section id="contact" class="contact fade-in">...</section>
 
   <script src="theme-toggle.js"></script>
 </body>
