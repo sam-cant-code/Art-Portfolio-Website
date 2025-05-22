@@ -9,46 +9,45 @@
 </head>
 <body>
     <!-- Navigation -->
-<header class="navbar">
-    <div class="nav-container">
-        <div class="logo">
-            <img src="pictures/car2.png" alt="Sharon Prem Logo" class="logo-img">
-        </div>
-
-        <nav class="nav-links">
-    <ul>
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li class="portfolio-dropdown">
-            <a href="#portfolio" class="nav-link">Portfolio</a>
-            <ul class="dropdown-menu">
-                <li><a href="#digital-art">Digital Art</a></li>
-                <li><a href="#paintings">Paintings</a></li>
-                <li><a href="#crafts">Crafts</a></li>
-                <li><a href="#character-designs">Character Designs</a></li>
-                <li><a href="#animations">Animations</a></li>
-                <li><a href="#awards">Awards</a></li>
-            </ul>
-        </li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li class="theme-toggle-wrapper">
-            <label class="theme-switch">
-        <input type="checkbox" id="theme-toggle">
-        <div class="slider">
-            <div class="slider-handle">
-                <span class="theme-icon">🌙</span>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="pictures/car2.png" alt="Sharon Prem Logo" class="logo-img">
             </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li class="portfolio-dropdown">
+                        <a href="#portfolio" class="nav-link dropdown-trigger" tabindex="0">Portfolio</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#digital-art">Digital Art</a></li>
+                            <li><a href="#paintings">Paintings</a></li>
+                            <li><a href="#crafts">Crafts</a></li>
+                            <li><a href="#character-designs">Character Designs</a></li>
+                            <li><a href="#animations">Animations</a></li>
+                            <li><a href="#awards">Awards</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="theme-toggle-wrapper">
+                        <label class="theme-switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <div class="slider">
+                                <div class="slider-handle">
+                                    <span class="theme-icon">🌙</span>
+                                </div>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </label>
-        </li>
-    </ul>
-</nav>
+    </header>
 
-        <button class="menu-toggle" aria-label="Toggle Menu">
-            <span class="hamburger"></span>
-        </button>
-    </div>
-</header>
     <!-- Hero Section -->
     <section id="home" class="hero fade-in">
         <video class="hero-video" autoplay muted loop playsinline>
@@ -71,7 +70,7 @@
                 <img src="art/capitano.jpg" alt="Capitano">
                 <img src="art/nilou.jpg" alt="Nilou">
                 <img src="art/kazuha.jpg" alt="Kazuha">
-                <img src="art/eren yaeger.jpg" alt="Kazuha">
+                <img src="art/eren yaeger.jpg" alt="Eren Yaeger">
                 <img src="art/clorind.jpg" alt="Clorind">
                 <img src="art/arleccino.jpg" alt="Arleccino">
             </div>
@@ -81,16 +80,10 @@
         <div class="portfolio-section">
             <h3>Paintings</h3>
             <div class="paintings-grid">
-                <div class="column-one">
-                    <img src="paintings/bluesky.jpg" alt="Painting 1">
-                    <img src="paintings/mountain.jpg" alt="Painting 2">
-                </div>
-                <div class="column-two">
-                    <img src="paintings/blackwoman.jpg" alt="Painting 3" class="large-painting">
-                </div>
-                <div class="bottom-row">
-                    <img src="paintings/pattern.jpg" alt="Painting 4" class="large-painting">
-                </div>
+                <img src="paintings/bluesky.jpg" alt="Painting 1">
+                <img src="paintings/mountain.jpg" alt="Painting 2">
+                <img src="paintings/blackwoman.jpg" alt="Painting 3" class="large-painting">
+                <img src="paintings/pattern.jpg" alt="Painting 4" class="large-painting">
             </div>
         </div>
 
@@ -176,7 +169,6 @@
         </p>
     </section>
     <script src="theme-toggle.js"></script>
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Sharon Prem Art Portfolio. All rights reserved.</p>
     </footer>
