@@ -31,13 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('menu-open');
     });
 
+    // Prevent nav menu from closing when clicking inside
+    navLinks.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
     // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
+    document.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
     });
 
     // Dropdown menu (mobile & desktop)
