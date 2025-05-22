@@ -465,3 +465,63 @@ footer { text-align: center; padding: 2rem; background-color: rgba(26,26,26,0.95
 /* Animations */
 .fade-in { opacity: 0; transform: translateY(30px); animation: fadeInUp 1s cubic-bezier(0.4,0,0.2,1) forwards; }
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+/* --- MOBILE OPTIMIZATION --- */
+@media (max-width: 600px) {
+    html {
+        font-size: 15px;
+    }
+    .hero-content {
+        padding: 1.2rem;
+    }
+    .hero-content h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .portfolio h2,
+    .portfolio-section h3 {
+        font-size: 1.3rem;
+    }
+    .about, .contact {
+        padding: 2.5rem 0.5rem;
+    }
+    .portfolio-section {
+        padding: 1rem 0;
+    }
+    .paintings-grid,
+    .masonry-grid {
+        column-count: 1 !important;
+        padding: 0.5rem 0;
+    }
+    .paintings-grid img,
+    .paintings-grid .large-painting,
+    .masonry-grid img,
+    .masonry-grid video {
+        max-height: 220px;
+    }
+    .awards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 1rem 0.5rem;
+    }
+    .award-item {
+        padding: 1rem;
+    }
+    .contact form {
+        gap: 1rem;
+    }
+    .contact input, .contact textarea {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+    .contact button {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+    }
+    footer {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+}
