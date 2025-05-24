@@ -87,8 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Disable right-click everywhere
     document.addEventListener('contextmenu', e => e.preventDefault());
 
-    // Render all images as canvas with watermark (only if data-watermark is present)
-    document.querySelectorAll('.canvas-art').forEach(function(div) {
+    // --- LAZY LOADING FOR CANVAS ART ---
+    const canvasArts = document.querySelectorAll('.canvas-art');
+    const loadCanvasArt = (div) => {
+        // Prevent double-loading
+        if (div.dataset.loaded) return;
         const img = new Image();
         img.crossOrigin = "anonymous";
         img.src = div.dataset.src;
@@ -115,11 +118,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.globalAlpha = 1;
                 ctx.shadowBlur = 0;
             }
+            // Save the description element if it exists
+            const desc = div.querySelector('.canvas-desc');
             div.innerHTML = "";
             div.appendChild(canvas);
+            if (desc) div.appendChild(desc); // Re-append the description
+            div.dataset.loaded = "true";
         };
         img.onerror = function() {
             div.innerHTML = "<span style='color:red'>Image failed to load</span>";
+            div.dataset.loaded = "true";
         };
-    });
+    };
+
+    // Use Intersection Observer for lazy loading
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadCanvasArt(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: "200px 0px", // start loading a bit before in view
+            threshold: 0.01
+        });
+        canvasArts.forEach(div => observer.observe(div));
+    } else {
+        // Fallback: load all at once
+        canvasArts.forEach(div => loadCanvasArt(div));
+    }
 });
