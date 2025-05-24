@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     });
 
-    // Hamburger menu
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         navLinks.classList.toggle('active');
@@ -42,21 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('menu-open');
     });
 
-    // Close menu when clicking a nav link (for mobile)
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
+    // Close menu and smooth scroll when clicking a nav link (for mobile)
+    navLinks.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
         link.addEventListener('click', (e) => {
-            // Only close if menu is open (mobile)
-            if (navLinks.classList.contains('active')) {
+            const href = link.getAttribute('href');
+            // Only handle section links
+            if (
+                href &&
+                (
+                    href === '#digital-art' ||
+                    href === '#paintings' ||
+                    href === '#crafts' ||
+                    href === '#character-designs' ||
+                    href === '#animations' ||
+                    href === '#awards'
+                )
+            ) {
+                e.preventDefault();
                 navLinks.classList.remove('active');
                 menuToggle.classList.remove('active');
                 document.body.classList.remove('menu-open');
+                setTimeout(() => {
+                    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+                }, 200);
             }
         });
-    });
-
-    // Prevent nav menu from closing when clicking inside
-    navLinks.addEventListener('click', (e) => {
-        e.stopPropagation();
     });
 
     // Close menu when clicking outside
@@ -65,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.classList.remove('active');
         document.body.classList.remove('menu-open');
     });
+}
 
     // Dropdown menu (mobile & desktop)
     const dropdownTrigger = document.querySelector('.dropdown-trigger');
@@ -161,4 +172,63 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fallback: load all at once
         canvasArts.forEach(div => loadCanvasArt(div));
     }
+    const navOverlay = document.querySelector('.nav-overlay');
+if (menuToggle && navLinks && navOverlay) {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+        // Show/hide overlay
+        if (document.body.classList.contains('menu-open')) {
+            navOverlay.style.display = 'block';
+            setTimeout(() => navOverlay.style.opacity = '1', 10);
+        } else {
+            navOverlay.style.opacity = '0';
+            setTimeout(() => navOverlay.style.display = 'none', 300);
+        }
+    });
+
+    // Close menu when clicking overlay
+    navOverlay.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        navOverlay.style.opacity = '0';
+        setTimeout(() => navOverlay.style.display = 'none', 300);
+    });
+}
+
+// Also close overlay when closing menu via nav link or outside click
+function closeMenuAndOverlay() {
+    navLinks.classList.remove('active');
+    menuToggle.classList.remove('active');
+    document.body.classList.remove('menu-open');
+    if (navOverlay) {
+        navOverlay.style.opacity = '0';
+        setTimeout(() => navOverlay.style.display = 'none', 300);
+    }
+}
+
+// Use closeMenuAndOverlay() wherever you close the menu:
+navLinks.querySelectorAll(
+    'a[href="#digital-art"],a[href="#paintings"],a[href="#crafts"],a[href="#character-designs"],a[href="#animations"],a[href="#awards"]'
+).forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        closeMenuAndOverlay();
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            setTimeout(() => {
+                document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+            }, 200);
+        }
+    });
+});
+
+document.addEventListener('click', () => {
+    closeMenuAndOverlay();
+});
+
+    
 });
