@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Theme toggle
-    const themeToggle = document.getElementById('javascript.js');
+    const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.querySelector('.theme-icon');
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -8,60 +8,68 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial state
     if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
         document.body.classList.add('light-mode');
-        themeToggle.checked = true;
-        themeIcon.textContent = '☀️';
+        if (themeToggle) themeToggle.checked = true;
+        if (themeIcon) themeIcon.textContent = '☀️';
     } else {
         document.body.classList.remove('light-mode');
-        themeToggle.checked = false;
-        themeIcon.textContent = '🌙';
+        if (themeToggle) themeToggle.checked = false;
+        if (themeIcon) themeIcon.textContent = '🌙';
     }
 
-    themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            document.body.classList.add('light-mode');
-            themeIcon.textContent = '☀️';
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.body.classList.remove('light-mode');
-            themeIcon.textContent = '🌙';
-            localStorage.setItem('theme', 'dark');
-        }
-        themeIcon.style.transform = 'rotate(360deg)';
-        setTimeout(() => {
-            themeIcon.style.transform = 'rotate(0deg)';
-        }, 500);
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('light-mode');
+                if (themeIcon) themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('light-mode');
+                if (themeIcon) themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+            if (themeIcon) {
+                themeIcon.style.transform = 'rotate(360deg)';
+                setTimeout(() => {
+                    themeIcon.style.transform = 'rotate(0deg)';
+                }, 500);
+            }
+        });
+    }
 
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navLinks.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    });
+    // Hamburger menu and overlay
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navOverlay = document.querySelector('.nav-overlay');
+    if (menuToggle && navLinks && navOverlay) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
 
-    // Close menu and smooth scroll when clicking a nav link (for mobile)
-    navLinks.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
+        // Close menu when clicking overlay
+        navOverlay.addEventListener('click', () => {
+            closeMenuAndOverlay();
+        });
+    }
+
+    // Also close overlay when closing menu via nav link or outside click
+    function closeMenuAndOverlay() {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+
+    // Always close menu and smooth scroll when clicking a section link (desktop & mobile)
+    navLinks.querySelectorAll(
+        'a[href="#digital-art"],a[href="#paintings"],a[href="#crafts"],a[href="#character-designs"],a[href="#animations"],a[href="#awards"]'
+    ).forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            // Only handle section links
-            if (
-                href &&
-                (
-                    href === '#digital-art' ||
-                    href === '#paintings' ||
-                    href === '#crafts' ||
-                    href === '#character-designs' ||
-                    href === '#animations' ||
-                    href === '#awards'
-                )
-            ) {
+            closeMenuAndOverlay();
+            if (href && href.startsWith('#')) {
                 e.preventDefault();
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-                document.body.classList.remove('menu-open');
                 setTimeout(() => {
                     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
                 }, 200);
@@ -69,36 +77,40 @@ if (menuToggle && navLinks) {
         });
     });
 
+    // Prevent nav menu from closing when clicking inside
+    navLinks.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
     // Close menu when clicking outside
     document.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-        document.body.classList.remove('menu-open');
+        closeMenuAndOverlay();
     });
-}
 
     // Dropdown menu (mobile & desktop)
     const dropdownTrigger = document.querySelector('.dropdown-trigger');
     const dropdownMenu = document.querySelector('.dropdown-menu');
-    dropdownTrigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dropdownMenu.classList.toggle('active');
-        dropdownTrigger.classList.toggle('active');
-    });
-
-    // Keyboard accessibility for dropdown
-    dropdownTrigger.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+    if (dropdownTrigger && dropdownMenu) {
+        dropdownTrigger.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             dropdownMenu.classList.toggle('active');
             dropdownTrigger.classList.toggle('active');
-        }
-    });
+        });
+
+        // Keyboard accessibility for dropdown
+        dropdownTrigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('active');
+                dropdownTrigger.classList.toggle('active');
+            }
+        });
+    }
 
     // Responsive: close menu on resize
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 900) {
+        if (window.innerWidth > 900 && navLinks && menuToggle && dropdownMenu && dropdownTrigger) {
             navLinks.classList.remove('active');
             menuToggle.classList.remove('active');
             document.body.classList.remove('menu-open');
@@ -172,63 +184,4 @@ if (menuToggle && navLinks) {
         // Fallback: load all at once
         canvasArts.forEach(div => loadCanvasArt(div));
     }
-    const navOverlay = document.querySelector('.nav-overlay');
-if (menuToggle && navLinks && navOverlay) {
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navLinks.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-        // Show/hide overlay
-        if (document.body.classList.contains('menu-open')) {
-            navOverlay.style.display = 'block';
-            setTimeout(() => navOverlay.style.opacity = '1', 10);
-        } else {
-            navOverlay.style.opacity = '0';
-            setTimeout(() => navOverlay.style.display = 'none', 300);
-        }
-    });
-
-    // Close menu when clicking overlay
-    navOverlay.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-        document.body.classList.remove('menu-open');
-        navOverlay.style.opacity = '0';
-        setTimeout(() => navOverlay.style.display = 'none', 300);
-    });
-}
-
-// Also close overlay when closing menu via nav link or outside click
-function closeMenuAndOverlay() {
-    navLinks.classList.remove('active');
-    menuToggle.classList.remove('active');
-    document.body.classList.remove('menu-open');
-    if (navOverlay) {
-        navOverlay.style.opacity = '0';
-        setTimeout(() => navOverlay.style.display = 'none', 300);
-    }
-}
-
-// Use closeMenuAndOverlay() wherever you close the menu:
-navLinks.querySelectorAll(
-    'a[href="#digital-art"],a[href="#paintings"],a[href="#crafts"],a[href="#character-designs"],a[href="#animations"],a[href="#awards"]'
-).forEach(link => {
-    link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        closeMenuAndOverlay();
-        if (href && href.startsWith('#')) {
-            e.preventDefault();
-            setTimeout(() => {
-                document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-            }, 200);
-        }
-    });
-});
-
-document.addEventListener('click', () => {
-    closeMenuAndOverlay();
-});
-
-    
 });
