@@ -623,43 +623,42 @@ body.light-mode footer { background: #f8f8f8; color: #222; }
     .nav-links {
         display: block;
         position: fixed;
-        top: 56px;
+        top: 0;
         left: 0;
-        width: 100vw;
-        height: calc(100vh - 56px);
+        width: 80vw;
+        max-width: 340px;
+        height: 100vh;
         background: #1a1a1a;
         transform: translateX(-100%);
         transition: transform 0.3s;
         z-index: 999;
         overflow-y: auto;
+        box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+        border-right: 1px solid rgba(255,255,255,0.08);
     }
-    .nav-links.active { transform: translateX(0); }
+    body.light-mode .nav-links {
+        background: #f8f8f8;
+        border-right: 1px solid #e0e0e0;
+    }
+    .nav-links.active {
+        transform: translateX(0);
+    }
     .nav-links ul {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
-        padding: 2rem 1.5rem;
+        padding: 4rem 1.5rem 2rem 2rem;
     }
-    .portfolio-dropdown { width: 100%; }
-    .dropdown-menu {
-        position: static;
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        background: none;
-        box-shadow: none;
-        border: none;
-        min-width: 0;
-        padding: 0;
-        display: none;
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 1100;
     }
-    .dropdown-menu.active { display: block; }
-    .dropdown-menu li a {
-        padding: 0.8rem 0.5rem;
-        font-size: 1rem;
+    .logo {
+        margin-left: 60px;
     }
-    .javascript.js-wrapper { margin: 1.5rem 0 0 0; }
-    body.menu-open { overflow: hidden; }
 }
 
 /* --- MOBILE OPTIMIZATION --- */
