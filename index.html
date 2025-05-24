@@ -4,23 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sharon's Art Portfolio</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <div class="nav-overlay"></div>
   <body>
+    <div class="nav-overlay"></div>
     <!-- Navigation -->
     <header class="navbar">
       <div class="nav-container">
         <div class="logo">
-          <img
-            src="pictures/car2.png"
-            alt="Sharon Prem Logo"
-            class="logo-img"
-          />
+          <img src="pictures/car2.png" alt="Sharon Prem Logo" class="logo-img" />
         </div>
         <button class="menu-toggle" aria-label="Toggle Menu">
           <span class="hamburger"></span>
@@ -29,12 +22,7 @@
           <ul>
             <li><a href="#home" class="nav-link">Home</a></li>
             <li class="portfolio-dropdown">
-              <a
-                href="#portfolio"
-                class="nav-link dropdown-trigger"
-                tabindex="0"
-                >Portfolio</a
-              >
+              <a href="#portfolio" class="nav-link dropdown-trigger" tabindex="0">Portfolio</a>
               <ul class="dropdown-menu">
                 <li><a href="#digital-art">Digital Art</a></li>
                 <li><a href="#paintings">Paintings</a></li>
@@ -46,18 +34,19 @@
             </li>
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
-            <li class="javascript.js-wrapper">
-              <label class="theme-switch">
-                <input type="checkbox" id="javascript.js" />
-                <div class="slider">
-                  <div class="slider-handle">
-                    <span class="theme-icon">🌙</span>
-                  </div>
-                </div>
-              </label>
-            </li>
           </ul>
         </nav>
+        <!-- Theme toggle always visible in navbar -->
+        <div class="theme-toggle-wrapper">
+          <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle" />
+            <span class="slider">
+              <span class="slider-handle">
+                <span class="theme-icon">🌙</span>
+              </span>
+            </span>
+          </label>
+        </div>
       </div>
     </header>
 
@@ -73,26 +62,26 @@
         </p>
       </div>
     </section>
-<!-- About Section -->
-<section id="about" class="about fade-in">
-  <h2>About Me</h2>
-  <div class="about-content">
-    <div class="canvas-art" data-src="pictures/sharon.png" data-alt="Sharon Prem Portrait"></div>
-    <div class="about-text">
-      <p>
-        I’m an aspiring designer, especially passionate about character illustrations and designs.<br />
-        I have always been deeply fascinated by innovative and creative approaches to problem-solving. In particular, I hold great admiration for designs that carry profound meanings and symbolic significance.
-      </p>
-      <p>
-        I have showcased various works of mine, ranging in multiple art mediums, whether it be sketching, painting, crafting or digital art.
-      </p>
-      <p>I also like to indulge in 3D modelling and cosplay making.</p>
-      <p>
-        My interest initially stems from my enjoyment in art as a hobby in 5th grade. From that early age, I have slowly molded my art skills into a creative construct which enables me to bring my ideas to life.
-      </p>
-    </div>
-  </div>
-</section>
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="canvas-art" data-src="pictures/sharon.png" data-alt="Sharon Prem Portrait"></div>
+        <div class="about-text">
+          <p>
+            I’m an aspiring designer, especially passionate about character illustrations and designs.<br />
+            I have always been deeply fascinated by innovative and creative approaches to problem-solving. In particular, I hold great admiration for designs that carry profound meanings and symbolic significance.
+          </p>
+          <p>
+            I have showcased various works of mine, ranging in multiple art mediums, whether it be sketching, painting, crafting or digital art.
+          </p>
+          <p>I also like to indulge in 3D modelling and cosplay making.</p>
+          <p>
+            My interest initially stems from my enjoyment in art as a hobby in 5th grade. From that early age, I have slowly molded my art skills into a creative construct which enables me to bring my ideas to life.
+          </p>
+        </div>
+      </div>
+    </section>
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio fade-in">
       <h2>My Portfolio</h2>
@@ -101,8 +90,12 @@
       <div class="portfolio-section">
         <h3 id="digital-art">Fanart</h3>
         <div class="masonry-grid paintings-masonry">
-          <div class="canvas-art" data-src="art/capitano.jpg" data-alt="Capitano" data-watermark="© Sharon Prem"></div>
-          <div class="canvas-art" data-src="art/nilou.jpg" data-alt="Nilou" data-watermark="© Sharon Prem"></div>
+          <div class="canvas-art" data-src="art/capitano.jpg" data-alt="Capitano" data-watermark="© Sharon Prem">
+            <span class="canvas-desc">This is Capitano</span>
+          </div>
+          <div class="canvas-art" data-src="art/nilou.jpg" data-alt="Nilou" data-watermark="© Sharon Prem">
+            <span class="canvas-desc">This is Capitano</span>
+          </div>
           <div class="canvas-art" data-src="art/kazuha.jpg" data-alt="Kazuha" data-watermark="© Sharon Prem"></div>
           <div class="canvas-art" data-src="art/eren yaeger.jpg" data-alt="Eren Yaeger" data-watermark="© Sharon Prem"></div>
           <div class="canvas-art" data-src="art/clorind.jpg" data-alt="Clorind" data-watermark="© Sharon Prem"></div>
@@ -188,10 +181,8 @@
               <h4>3rd Prize, Discover Design Annual Event 2022</h4>
               <p>Reel to Paper & Storeyes</p>
               <div class="award-description">
-                <strong>Storeyes:</strong> A building which you have attachment or
-                memory with.<br />
-                <strong>Reel to Paper:</strong> Book cover design of your favourite
-                movie.
+                <strong>Storeyes:</strong> A building which you have attachment or memory with.<br />
+                <strong>Reel to Paper:</strong> Book cover design of your favourite movie.
               </div>
             </div>
           </div>
@@ -258,7 +249,6 @@
       </p>
     </section>
     <script src="javascript.js"></script>
-    
     <footer>
       <p>&copy; 2025 Sharon Prem. All artworks are protected and may not be reused without permission.</p>
     </footer>
