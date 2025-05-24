@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.querySelector('.theme-icon');
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+    // Only enable light mode if user previously selected it
+    if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
         themeIcon.textContent = '☀️';
+        themeToggle.checked = true;
+    } else {
+        document.body.classList.remove('light-mode');
+        themeIcon.textContent = '🌙';
+        themeToggle.checked = false;
     }
 
     themeToggle.addEventListener('click', () => {
@@ -24,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hamburger menu
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const mobileOverlay = document.querySelector('.mobile-overlay');
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         navLinks.classList.toggle('active');
@@ -31,8 +36,30 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('menu-open');
     });
 
-    // Prevent nav menu from closing when clicking inside
+    // Close menu when clicking overlay
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    }
+
+    // Close menu when clicking a nav link (for better UX)
     navLinks.addEventListener('click', (e) => {
+        // Only handle anchor links that go to a section
+        if (e.target.classList.contains('nav-link') && e.target.getAttribute('href')?.startsWith('#')) {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            // Smooth scroll to section
+            const sectionId = e.target.getAttribute('href');
+            const section = document.querySelector(sectionId);
+            if (section) {
+                e.preventDefault();
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
         e.stopPropagation();
     });
 
@@ -72,4 +99,24 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdownTrigger.classList.remove('active');
         }
     });
+
+    // Also close menu when clicking a dropdown menu link (for mobile)
+    if (dropdownMenu) {
+        dropdownMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                dropdownMenu.classList.remove('active');
+                dropdownTrigger.classList.remove('active');
+                // Smooth scroll to section
+                const sectionId = e.target.getAttribute('href');
+                const section = document.querySelector(sectionId);
+                if (section) {
+                    e.preventDefault();
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    }
 });
