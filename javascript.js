@@ -40,52 +40,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const navOverlay = document.querySelector('.nav-overlay');
-    if (menuToggle && navLinks && navOverlay) {
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
 
-        // Close menu when clicking overlay
-        navOverlay.addEventListener('click', () => {
-            closeMenuAndOverlay();
-        });
+    function openMenu() {
+        navLinks.classList.add('active');
+        menuToggle.classList.add('active');
+        document.body.classList.add('menu-open');
     }
-
-    // Also close overlay when closing menu via nav link or outside click
-    function closeMenuAndOverlay() {
+    function closeMenu() {
         navLinks.classList.remove('active');
         menuToggle.classList.remove('active');
         document.body.classList.remove('menu-open');
     }
 
-    // Always close menu and smooth scroll when clicking a section link (desktop & mobile)
-    navLinks.querySelectorAll(
-        'a[href="#digital-art"],a[href="#paintings"],a[href="#crafts"],a[href="#character-designs"],a[href="#animations"],a[href="#awards"]'
-    ).forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            closeMenuAndOverlay();
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                setTimeout(() => {
-                    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-                }, 200);
+    if (menuToggle && navLinks && navOverlay) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
             }
         });
-    });
 
-    // Prevent nav menu from closing when clicking inside
-    navLinks.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
+        navOverlay.addEventListener('click', () => {
+            closeMenu();
+        });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', () => {
-        closeMenuAndOverlay();
-    });
+        // Prevent nav menu from closing when clicking inside
+        navLinks.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close menu when clicking outside (on document)
+        document.addEventListener('click', () => {
+            closeMenu();
+        });
+    }
+
+    // Always close menu and smooth scroll when clicking a section link (desktop & mobile)
+    if (navLinks) {
+        navLinks.querySelectorAll(
+            'a[href="#digital-art"],a[href="#paintings"],a[href="#crafts"],a[href="#character-designs"],a[href="#animations"],a[href="#awards"]'
+        ).forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                closeMenu();
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    setTimeout(() => {
+                        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+                    }, 200);
+                }
+            });
+        });
+    }
 
     // Dropdown menu (mobile & desktop)
     const dropdownTrigger = document.querySelector('.dropdown-trigger');
