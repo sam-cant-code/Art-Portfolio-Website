@@ -728,3 +728,51 @@ body.light-mode footer { background: #f8f8f8; color: #222; }
     box-shadow: 0 8px 32px 4px rgba(0,0,0,0.22);
     z-index: 2;
 }
+.canvas-art {
+    position: relative;
+}
+.canvas-desc {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    background: rgba(30,30,30,0.95);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.canvas-art:hover .canvas-desc {
+    display: block;
+}
+/* Light mode navbar for mobile */
+@media (max-width: 768px) {
+    body.light-mode .navbar {
+        background: #f8f8f8;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    body.light-mode .nav-links {
+        background: #f8f8f8;
+    }
+    body.light-mode .nav-link {
+        color: #222;
+    }
+    body.light-mode .nav-link::after {
+        background: #222;
+    }
+    body.light-mode .dropdown-menu {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+    }
+    body.light-mode .dropdown-menu a {
+        color: #222;
+    }
+    body.light-mode .dropdown-menu a:hover::before {
+        background: rgba(0,0,0,0.08);
+    }
+}
