@@ -42,6 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('menu-open');
     });
 
+    // Close menu when clicking a nav link (for mobile)
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Only close if menu is open (mobile)
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    });
+
     // Prevent nav menu from closing when clicking inside
     navLinks.addEventListener('click', (e) => {
         e.stopPropagation();
