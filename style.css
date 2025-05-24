@@ -742,3 +742,44 @@ html, body {
 }
 
 /* ...existing code... */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 18px;
+        right: 18px;   /* <-- Keep burger on the right */
+        left: auto;
+        z-index: 1100;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .logo {
+        margin-left: 0;
+    }
+    .nav-links {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80vw;
+        max-width: 340px;
+        height: 100vh;
+        background: #1a1a1a;
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+        border-right: 1px solid rgba(255,255,255,0.08);
+        padding-top: 0;
+    }
+    body.light-mode .nav-links {
+        background: #f8f8f8;
+        border-right: 1px solid #e0e0e0;
+    }
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    /* ...rest of your responsive nav styles... */
+}
+/* ...existing code... */
