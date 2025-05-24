@@ -618,38 +618,42 @@ body.light-mode footer { background: #f8f8f8; color: #222; }
     }
 }
 
-@media (max-width: 768px) {
+/* Responsive Burger Menu: Burger on right, menu slides in from right, not full screen */
+@media (max-width: 900px) {
     .menu-toggle {
         display: block;
         position: fixed;
         top: 18px;
-        right: 18px; /* Burger on right */
+        right: 18px;
         left: auto;
         z-index: 1100;
-    }
-    .logo {
         margin-left: 0;
+        margin-right: 0;
     }
     .nav-links {
         display: block;
         position: fixed;
         top: 0;
-        left: 0;
-        width: 80vw;
+        right: 0;
+        left: auto;
+        width: 78vw;
         max-width: 340px;
+        min-width: 220px;
         height: 100vh;
         background: #1a1a1a;
-        transform: translateX(-100%);
-        transition: transform 0.3s;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(.4,2,.6,1);
         z-index: 999;
         overflow-y: auto;
-        box-shadow: 2px 0 16px rgba(0,0,0,0.18);
-        border-right: 1px solid rgba(255,255,255,0.08);
+        box-shadow: -2px 0 16px rgba(0,0,0,0.18);
+        border-left: 1px solid rgba(255,255,255,0.08);
+        border-right: none;
         padding-top: 0;
     }
     body.light-mode .nav-links {
         background: #f8f8f8;
-        border-right: 1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+        border-right: none;
     }
     .nav-links.active {
         transform: translateX(0);
@@ -692,94 +696,118 @@ body.light-mode footer { background: #f8f8f8; color: #222; }
     body.menu-open { overflow: hidden; }
 }
 
-/* Fix for cut-off content: add top padding to body for fixed navbar */
-body {
-    padding-top: 56px;
-}
-@media (max-width: 900px) {
-    body {
-        padding-top: 52px;
-    }
-}
 
-/* Ensure hero and about sections are not cut off on mobile */
-.hero,
-.about,
-.portfolio,
-.contact {
-    box-sizing: border-box;
-    width: 100%;
-    overflow-x: hidden;
-}
-
-/* Prevent horizontal scroll on mobile */
-html, body {
-    max-width: 100vw;
-    overflow-x: hidden;
-}
-
-/* Fix for .about-content and .about-text on mobile */
+/* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 600px) {
+    html {
+        font-size: 15px;
+    }
+    .hero-content {
+        padding: 1.2rem;
+    }
+    .hero-content h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .portfolio h2,
+    .portfolio-section h3 {
+        font-size: 1.3rem;
+    }
+    .about, .contact {
+        padding: 2.5rem 0.5rem;
+    }
+    .portfolio-section {
+        padding: 1rem 0;
+    }
+    .masonry-grid {
+        column-count: 1 !important;
+        padding: 0.5rem 0;
+    }
+    .canvas-art {
+        margin-bottom: 1.2rem;
+    }
     .about-content {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        width: 100%;
-        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
     }
     .about-text {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        width: 100%;
-        box-sizing: border-box;
+        text-align: center;
+        margin: 0;
+    }
+    .about-photo {
+        margin-bottom: 0.5rem;
     }
 }
-
-/* Fix for masonry grid overflow */
-.masonry-grid {
+.canvas-art {
     width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    max-width: 350px;
+    display: inline-block;
+    margin-bottom: 2rem;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    break-inside: avoid;
+    transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s;
+    cursor: pointer;
+    position: relative;
 }
-
-/* ...existing code... */
+/* Add this for hover enlarge effect */
+.canvas-art:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 32px 4px rgba(0,0,0,0.22);
+    z-index: 2;
+}
+.canvas-art {
+    position: relative;
+}
+.canvas-desc {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    background: rgba(30,30,30,0.95);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.canvas-art:hover .canvas-desc {
+    display: block;
+}
+/* Light mode navbar for mobile */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        position: fixed;
-        top: 18px;
-        right: 18px;   /* <-- Keep burger on the right */
-        left: auto;
-        z-index: 1100;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .logo {
-        margin-left: 0;
-    }
-    .nav-links {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 80vw;
-        max-width: 340px;
-        height: 100vh;
-        background: #1a1a1a;
-        transform: translateX(-100%);
-        transition: transform 0.3s;
-        z-index: 999;
-        overflow-y: auto;
-        box-shadow: 2px 0 16px rgba(0,0,0,0.18);
-        border-right: 1px solid rgba(255,255,255,0.08);
-        padding-top: 0;
+    body.light-mode .navbar {
+        background: #f8f8f8;
+        border-bottom: 1px solid #e0e0e0;
     }
     body.light-mode .nav-links {
         background: #f8f8f8;
-        border-right: 1px solid #e0e0e0;
     }
-    .nav-links.active {
-        transform: translateX(0);
+    body.light-mode .nav-link {
+        color: #222;
     }
-    /* ...rest of your responsive nav styles... */
+    body.light-mode .nav-link::after {
+        background: #222;
+    }
+    body.light-mode .dropdown-menu {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+    }
+    body.light-mode .dropdown-menu a {
+        color: #222;
+    }
+    body.light-mode .dropdown-menu a:hover::before {
+        background: rgba(0,0,0,0.08);
+    }
 }
-/* ...existing code... */
