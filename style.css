@@ -811,3 +811,48 @@ body.light-mode footer { background: #f8f8f8; color: #222; }
         background: rgba(0,0,0,0.08);
     }
 }
+/* Add this near your nav CSS */
+/* Overlay for menu popup */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    z-index: 998;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.35);
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+body.menu-open .nav-overlay {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+.nav-overlay {
+    display: none;
+    position: fixed;
+    z-index: 998;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.35);
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+body.menu-open .nav-overlay {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Theme toggle always visible in navbar */
+.theme-toggle-wrapper {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+@media (max-width: 900px) {
+    .theme-toggle-wrapper {
+        margin: 0 1rem 0 0;
+    }
+}
